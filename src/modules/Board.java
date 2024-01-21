@@ -1,8 +1,13 @@
 package modules;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class Board {
     private int size;
     private List<List<Cell>> board;
@@ -34,20 +39,5 @@ public class Board {
             }
             System.out.println();
         }
-    }
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public List<List<Cell>> getBoard() {
-        return board;
-    }
-
-    public void setBoard(List<List<Cell>> board) {
-        this.board = board;
     }
 }
