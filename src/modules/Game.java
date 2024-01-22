@@ -2,7 +2,7 @@ package modules;
 
 import lombok.Getter;
 import lombok.Setter;
-import strategies.WinningStrategy;
+import strategies.winning.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

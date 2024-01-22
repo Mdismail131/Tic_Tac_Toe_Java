@@ -14,5 +14,5 @@ public abstract class Player {
     private PlayerType playerType;
 
     //Todo(Ismail): Add a method to make a move.
-
+    public abstract Cell nextMove(Board board);
 }

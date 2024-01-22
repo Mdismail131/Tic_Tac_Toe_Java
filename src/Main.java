@@ -3,6 +3,8 @@ import controller.PlayerController;
 import modules.BotDifficultyLevel;
 import modules.Game;
 import modules.Player;
+import strategies.winning.ColWinningStrategy;
+import strategies.winning.RowWinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +32,8 @@ public class Main {
             System.out.print("Symbol : ");
             String symbol = sc.next();
             System.out.println("Is this player a Bot? (Y/N)");
-            if (sc.next().equals("y")) {
-                System.out.print("what is the lever of Bot? (E/M/H");
+            if (sc.next().equals("Y")) {
+                System.out.println("what is the lever of Bot? (E/M/H)");
                 String level = sc.next();
                 BotDifficultyLevel botDifficultyLevel;
                 switch (level) {
@@ -45,9 +47,14 @@ public class Main {
             }
         }
 
-        Game game = GameController.initiateGame(dimension, players, List.of());
+        Game game = GameController.initiateGame(dimension, players, List.of(new RowWinningStrategy(), new ColWinningStrategy()));
 
-        game.board.print();
+        System.out.println("Are you ready to start the game: (Y/N)");
 
+        if(sc.next().equals("Y")) {
+            GameController gc = new GameController(game);
+            gc.startGame();
+        }
+        System.out.print("Game ended..");
     }
 }
