@@ -41,6 +41,8 @@ Welcome to Tic Tac Toe!
 2,0 | 2,1 | 2,2
 
 Player 1 (X), enter your move (row and column): 0,0
+
+
 X |   |  
 ---------
    |   |  
@@ -48,6 +50,7 @@ X |   |
    |   |  
 
 Player 2 (O), enter your move (row and column): 1,1
+
 
 X |   |  
 ---------
