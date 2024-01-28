@@ -5,19 +5,24 @@ import modules.Cell;
 import modules.CellState;
 import modules.Player;
 
-public class RowWinningStrategy implements WinningStrategy{
+import java.util.HashMap;
 
+public class RowWinningStrategy implements WinningStrategy{
+    private final HashMap<Player, HashMap<Integer, Integer>> cn = new HashMap<>();
     @Override
     public boolean checkWin(Cell cell, Board board) {
         Player currentPlayer = cell.getPlayer();
 
         int row = cell.getRow();
-        for (int i = 0; i < board.getSize(); i++) {
-            Cell currentCell = board.getBoard().get(row).get(i);
-            if (currentCell.getCellState().equals(CellState.EMPTY) || !currentCell.getPlayer().equals(currentPlayer)) {
-                return false;
-            }
+        if(!cn.containsKey(currentPlayer)) {
+            cn.put(currentPlayer, new HashMap<>());
         }
-        return true;
+        if (!cn.get(currentPlayer).containsKey(row)){
+            cn.get(currentPlayer).put(row, 0);
+        }
+        int cnt = cn.get(currentPlayer).get(row);
+        cn.get(currentPlayer).put(row, cnt + 1);
+        System.out.println("Row  winning Strategy");
+        return cnt + 1 == board.getSize();
     }
 }

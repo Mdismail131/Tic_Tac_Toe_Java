@@ -1,5 +1,6 @@
 package modules;
 
+import exceptions.CellAlreadyOccupiedException;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,31 +19,20 @@ public class HumanPlayer extends Player{
 
     @SneakyThrows
     @Override
-    public Cell nextMove(Board board) {
+    public Cell nextMove(Board board) throws CellAlreadyOccupiedException{
         Scanner sc = new Scanner(System.in);
-        int row, col;
-        Cell cell = null;
+        System.out.println("please enter the row:");
+        int row = sc.nextInt();
+        System.out.println("please enter the col:");
+        int col = sc.nextInt();
 
-        while (true) {
-            try {
-                System.out.println("please enter the row:");
-                row = sc.nextInt();
-                System.out.println("please enter the col:");
-                col = sc.nextInt();
-
-                if (!board.getBoard().get(row).get(col).getCellState().equals(CellState.EMPTY)) {
-                    throw new IllegalAccessException("Cells not empty");
-                }
-
-                cell = board.getBoard().get(row).get(col);
-                cell.setPlayer(this);
-                cell.setCellState(CellState.OCCUPIED);
-
-                break; // Break out of the loop if the input is valid
-            } catch (IllegalAccessException e) {
-                System.out.println("Invalid move! Try again.");
-            }
+        if(row < 0 || row >= board.getSize() && col < 0 || col >= board.getSize() || !board.getBoard().get(row).get(col).getCellState().equals(CellState.EMPTY)) {
+            throw new CellAlreadyOccupiedException();
         }
+
+        Cell cell = board.getBoard().get(row).get(col);
+        cell.setPlayer(this);
+        cell.setCellState(CellState.OCCUPIED);
 
         return cell;
     }

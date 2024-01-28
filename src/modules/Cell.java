@@ -14,4 +14,14 @@ public class Cell {
         this.col = col;
         this.cellState = CellState.EMPTY;
     }
+
+    @Override
+    public String toString() {
+        return "Cell{" +
+                "row=" + row +
+                ", col=" + col +
+                ", cellState=" + cellState +
+                ", player=" + player +
+                '}';
+    }
 }
